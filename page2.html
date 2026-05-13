@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Before We Knew</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+} 
+
+body{
+    background:#00022E;
+    overflow-x:hidden;
+    color:white;
+    min-height:100vh;
+    position:relative;
+}
+
+/* background glow */
+
+.glow1,
+.glow2{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:0.22;
+    z-index:-1;
+}
+
+.glow1{
+    width:400px;
+    height:400px;
+    background:#5865F2;
+    top:-100px;
+    left:-100px;
+}
+
+.glow2{
+    width:300px;
+    height:300px;
+    background:#ff9adf;
+    bottom:-100px;
+    right:-80px;
+}
+
+/* floating hearts */
+
+.hearts span{
+    position:fixed;
+    color:rgba(255,255,255,0.08);
+    animation:floatHeart linear infinite;
+    z-index:-1;
+}
+
+@keyframes floatHeart{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+/* container */
+
+.container{
+    width:92%;
+    max-width:850px;
+    margin:auto;
+    padding:70px 0;
+}
+
+/* title */
+
+.main-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.main-title h1{
+    font-size:52px;
+    margin-bottom:14px;
+}
+
+.main-title p{
+    color:#bfc7ff;
+    font-size:15px;
+}
+
+/* section text */
+
+.section-text{
+    text-align:center;
+    margin:60px 0 35px;
+    font-size:24px;
+    color:#ffb8e8;
+    font-weight:600;
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeUp 1s forwards;
+}
+
+/* discord messages */
+
+.chat-box{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.msg{
+    display:flex;
+    gap:14px;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.06);
+    padding:18px;
+    border-radius:22px;
+    backdrop-filter:blur(12px);
+
+    opacity:0;
+    transform:translateY(30px);
+
+    animation:appear 0.8s forwards;
+}
+
+.msg:nth-child(1){ animation-delay:0.3s; }
+.msg:nth-child(2){ animation-delay:1s; }
+.msg:nth-child(3){ animation-delay:1.8s; }
+.msg:nth-child(4){ animation-delay:2.6s; }
+.msg:nth-child(5){ animation-delay:3.4s; }
+.msg:nth-child(6){ animation-delay:4.2s; }
+.msg:nth-child(7){ animation-delay:5s; }
+.msg:nth-child(8){ animation-delay:5.8s; }
+
+.avatar{
+    min-width:50px;
+    height:50px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:700;
+    color:white;
+    font-size:16px;
+}
+
+.july{
+    background:linear-gradient(135deg,#ff9adf,#ffbfdc);
+}
+
+.mr{
+    background:linear-gradient(135deg,#5865F2,#8ea0ff);
+}
+
+.content{
+    width:100%;
+}
+
+.user{
+    font-size:14px;
+    margin-bottom:6px;
+}
+
+.user span{
+    color:#9098d7;
+    font-size:12px;
+    margin-left:6px;
+}
+
+.text{
+    color:#eef0ff;
+    line-height:1.8;
+    font-size:15px;
+}
+
+/* centered emotional line */
+
+.big-line{
+    text-align:center;
+    margin:100px 0;
+    opacity:0;
+    animation:fadeUp 1s forwards;
+    animation-delay:6.8s;
+}
+
+.big-line h2{
+    font-size:38px;
+    margin-bottom:14px;
+}
+
+.big-line p{
+    color:#ffb8e8;
+    font-size:18px;
+}
+
+/* ending */
+
+.end{
+    text-align:center;
+    margin-top:120px;
+    opacity:0;
+    animation:fadeUp 1s forwards;
+    animation-delay:8s;
+}
+
+.typing{
+    font-size:32px;
+    margin-bottom:20px;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right:3px solid white;
+    width:0;
+    margin-inline:auto;
+    animation:
+    typing 3s steps(30,end) forwards,
+    blink 0.8s infinite;
+    animation-delay:10.5s;
+}
+
+.final{
+    color:#ffb8e8;
+    font-size:24px;
+    opacity:0;
+    animation:fadeIn 1s forwards;
+    animation-delay:12s;
+}
+
+/* animations */
+
+@keyframes appear{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeUp{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeIn{
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes typing{
+    to{
+        width:100%;
+    }
+}
+
+@keyframes blink{
+    50%{
+        border-color:transparent;
+    }
+}
+
+/* continue button */
+
+.continue-btn{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:220px;
+    height:58px;
+
+    margin:80px auto 40px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:1px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #5865F2,
+    #7d8cff);
+
+    box-shadow:
+    0 0 25px rgba(88,101,242,0.35);
+
+    transition:0.35s ease;
+}
+
+.continue-btn:hover{
+
+    transform:
+    translateY(-4px)
+    scale(1.03);
+
+    box-shadow:
+    0 0 35px rgba(88,101,242,0.55);
+}
+
+/* mobile */
+
+@media(max-width:600px){
+
+.main-title h1{
+    font-size:38px;
+}
+
+.section-text{
+    font-size:20px;
+}
+
+.big-line h2{
+    font-size:28px;
+}
+
+.typing{
+    font-size:22px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow1"></div>
+<div class="glow2"></div>
+
+<div class="hearts"></div>
+
+<div class="container">
+
+    <div class="main-title">
+        <h1>Before We Knew</h1>
+        <p>
+            two random people in one random voice channel.
+        </p>
+    </div>
+
+    <div class="section-text">
+        “we were just strangers.”
+    </div>
+
+    <div class="chat-box">
+
+        <div class="msg">
+            <div class="avatar july">J</div>
+
+            <div class="content">
+                <div class="user">
+                    July
+                    <span>2/10/26, 5:21 AM</span>
+                </div>
+
+                <div class="text">
+                    well das cappp
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar mr">MK</div>
+
+            <div class="content">
+                <div class="user">
+                    Mr. Know It All
+                    <span>2/10/26, 5:21 AM</span>
+                </div>
+
+                <div class="text">
+                    Nothing’s cap when I say it.
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar mr">MK</div>
+
+            <div class="content">
+                <div class="user">
+                    Mr. Know It All
+                    <span>2/10/26, 5:24 AM</span>
+                </div>
+
+                <div class="text">
+                    Don’t die.<br>
+                    I’m here.
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar july">J</div>
+
+            <div class="content">
+                <div class="user">
+                    July
+                    <span>2/10/26, 5:25 AM</span>
+                </div>
+
+                <div class="text">
+                    nd when i need u wont be there bet
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar mr">MK</div>
+
+            <div class="content">
+                <div class="user">
+                    Mr. Know It All
+                    <span>2/10/26, 5:25 AM</span>
+                </div>
+
+                <div class="text">
+                    I will be there.<br>
+                    Bet.
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar july">J</div>
+
+            <div class="content">
+                <div class="user">
+                    July
+                    <span>2/10/26, 5:27 AM</span>
+                </div>
+
+                <div class="text">
+                    family isnt supposed to tell u to die...
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar mr">MK</div>
+
+            <div class="content">
+                <div class="user">
+                    Mr. Know It All
+                    <span>2/10/26, 5:27 AM</span>
+                </div>
+
+                <div class="text">
+                    Maybe you haven’t met your family yet.
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar july">J</div>
+
+            <div class="content">
+                <div class="user">
+                    July
+                    <span>2/10/26, 5:28 AM</span>
+                </div>
+
+                <div class="text">
+                    my dog is my world.
+                </div>
+</div>
+</div>
+
+  <div class="msg">
+            <div class="avatar mr">MK</div>
+
+            <div class="content">
+                <div class="user">
+                    Mr. Know It All
+                    <span>2/10/26, 5:27 AM</span>
+                </div>
+
+                <div class="text">
+                    Might as well take an online stranger into it!
+                </div>
+            </div>
+        </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="big-line">
+
+        <h2>
+            you cared before you even had a reason to.
+        </h2>
+
+        <p>
+            maybe i did meet my family...in a stranger.. 
+        </p>
+
+    </div>
+
+    <div class="end">
+
+        <div class="typing">
+            i thought you were temporary.
+        </div>
+
+        <div class="final">
+            you stayed<33
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* floating hearts */
+
+const hearts = document.querySelector('.hearts');
+
+for(let i=0;i<35;i++){
+
+    const heart = document.createElement('span');
+
+    heart.innerHTML = '♡';
+
+    heart.style.left = Math.random()*100 + 'vw';
+
+    heart.style.animationDuration =
+    (8 + Math.random()*10) + 's';
+
+    heart.style.fontSize =
+    (12 + Math.random()*16) + 'px';
+
+    heart.style.animationDelay =
+    Math.random()*6 + 's';
+
+    hearts.appendChild(heart);
+}
+
+</script>
+<a href="page3.html" class="continue-btn">
+    continue ♡
+</a>
+</body>
+</html>

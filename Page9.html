@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>home</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+height:100vh;
+overflow:hidden;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:
+linear-gradient(to bottom,
+#030712,
+#070d1f);
+
+color:white;
+
+position:relative;
+}
+
+/* stars */
+
+.stars span{
+
+position:absolute;
+
+width:2px;
+height:2px;
+
+background:white;
+
+border-radius:50%;
+
+opacity:0.5;
+
+animation:twinkle 4s infinite;
+}
+
+/* center */
+
+.center{
+
+text-align:center;
+
+z-index:2;
+
+width:90%;
+max-width:700px;
+}
+
+/* main title */
+
+.title{
+
+font-size:58px;
+line-height:1.2;
+
+font-weight:700;
+
+background:
+linear-gradient(
+135deg,
+white,
+#ffc7eb);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+animation:fadeUp 1.5s ease;
+}
+
+/* subtitle */
+
+.subtitle{
+
+margin-top:22px;
+
+font-size:17px;
+
+line-height:1.8;
+
+color:#d8ddff;
+
+opacity:0;
+
+animation:fadeUp 1.5s forwards;
+animation-delay:1s;
+}
+
+/* call box */
+
+.call-box{
+
+margin:45px auto 0;
+
+width:280px;
+
+padding:22px;
+
+border-radius:24px;
+
+background:
+rgba(255,255,255,0.05);
+
+border:
+1px solid rgba(255,255,255,0.08);
+
+backdrop-filter:blur(12px);
+
+opacity:0;
+
+animation:fadeUp 1.5s forwards;
+animation-delay:2s;
+}
+
+.status{
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+gap:10px;
+
+font-size:14px;
+
+color:#b9ffd0;
+}
+
+.dot{
+
+width:10px;
+height:10px;
+
+border-radius:50%;
+
+background:#8dffb0;
+
+box-shadow:
+0 0 12px #8dffb0;
+}
+
+.timer{
+
+margin-top:16px;
+
+font-size:34px;
+font-weight:600;
+
+letter-spacing:2px;
+}
+
+/* changing text */
+
+.rotate{
+
+margin-top:30px;
+
+height:30px;
+
+font-size:18px;
+
+color:#ffcaea;
+
+opacity:0;
+
+animation:fadeUp 1.5s forwards;
+animation-delay:3s;
+}
+
+/* bottom line */
+
+.bottom{
+
+position:absolute;
+
+bottom:35px;
+
+font-size:14px;
+
+letter-spacing:3px;
+
+color:#cdd4ff;
+
+opacity:0.6;
+}
+
+/* animations */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@keyframes twinkle{
+
+0%,100%{
+opacity:0.2;
+}
+
+50%{
+opacity:1;
+}
+
+}
+
+/* mobile */
+
+@media(max-width:700px){
+
+.title{
+font-size:38px;
+}
+
+.subtitle{
+font-size:15px;
+}
+
+.timer{
+font-size:28px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="center">
+
+<div class="title">
+out of everyone,<br>
+i’m glad it was you.
+</div>
+
+<div class="subtitle">
+from random discord vcs<br>
+to becoming part of my everyday life.
+</div>
+
+<div class="call-box">
+
+<div class="status">
+
+<div class="dot"></div>
+
+currently on call...
+
+</div>
+
+<div class="timer" id="timer">
+05:47:12
+</div>
+
+</div>
+
+<div class="rotate" id="rotate">
+eat properly.
+</div>
+
+</div>
+
+<div class="bottom">
+to more nights together.
+</div>
+
+<script>
+
+/* stars */
+
+const stars = document.querySelector('.stars');
+
+for(let i=0;i<90;i++){
+
+const star = document.createElement('span');
+
+star.style.top =
+Math.random()*100 + '%';
+
+star.style.left =
+Math.random()*100 + '%';
+
+star.style.animationDelay =
+Math.random()*5 + 's';
+
+stars.appendChild(star);
+
+}
+
+/* timer */
+
+let hours = 5;
+let mins = 47;
+let secs = 12;
+
+setInterval(()=>{
+
+secs++;
+
+if(secs >= 60){
+secs = 0;
+mins++;
+}
+
+if(mins >= 60){
+mins = 0;
+hours++;
+}
+
+document.getElementById("timer").innerHTML =
+String(hours).padStart(2,'0') + ":" +
+String(mins).padStart(2,'0') + ":" +
+String(secs).padStart(2,'0');
+
+},1000);
+
+/* rotating text */
+
+const texts = [
+
+"eat properly.",
+"open mic idiot.",
+"worried ml.",
+"goodboyyy.",
+"i’m here.",
+"meri jaan.",
+"call krdena.",
+"you look lovely swastika."
+
+];
+
+let index = 0;
+
+setInterval(()=>{
+
+index++;
+
+if(index >= texts.length){
+index = 0;
+}
+
+document.getElementById("rotate").innerHTML =
+texts[index];
+
+},2500);
+
+</script>
+
+</body>
+</html>

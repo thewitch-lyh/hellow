@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>unsent</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#050814;
+color:white;
+overflow:hidden;
+}
+
+/* soft background */
+
+.bg{
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at top,#5865F230,transparent 45%),
+radial-gradient(circle at bottom,#ff9adf15,transparent 45%);
+}
+
+/* container */
+
+.box{
+width:420px;
+padding:36px;
+
+border-radius:30px;
+
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+
+backdrop-filter:blur(18px);
+
+text-align:left;
+
+animation:fade 1.2s ease;
+}
+
+/* title */
+
+.box h1{
+font-size:30px;
+margin-bottom:18px;
+
+background:linear-gradient(135deg,#fff,#ffc6ea);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/* text */
+
+.box p{
+color:#d6dbff;
+line-height:1.9;
+font-size:15px;
+}
+
+/* typing effect line */
+
+.cursor{
+display:inline-block;
+width:10px;
+height:18px;
+background:#ffbde9;
+margin-left:4px;
+animation:blink 1s infinite;
+}
+
+/* button */
+
+.continue{
+margin-top:28px;
+
+display:flex;
+justify-content:flex-end;
+}
+
+a{
+
+text-decoration:none;
+color:white;
+
+padding:12px 22px;
+
+border-radius:14px;
+
+background:linear-gradient(135deg,#5865F2,#8795ff);
+
+font-weight:600;
+
+transition:0.3s;
+}
+
+a:hover{
+transform:translateY(-3px);
+}
+
+/* animations */
+
+@keyframes blink{
+50%{opacity:0;}
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* floating text */
+
+.float{
+position:absolute;
+font-size:12px;
+color:#cfd5ff;
+
+opacity:0.4;
+}
+
+.f1{ top:80px; left:60px; }
+.f2{ bottom:100px; right:80px; }
+.f3{ top:120px; right:120px; }
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="float f1">“you became my safe place.”</div>
+<div class="float f2">“i didn’t expect it to be you”</div>
+<div class="float f3">“but you stayed!!!”</div>
+
+<div class="box">
+
+<h1>unsent things</h1>
+
+<p>
+i never really knew when you became important.... in btw those calls those fights those late night texts.. talking till 5AM somwhere made you the biggest part pf my life <br><br>
+
+it wasn’t a moment.<br>
+it was a not a slow thing but somwhow it jst worked <br><br>
+
+you listened when i didn’t even make sense.<br>
+you stayed when i said things i shouldn’t have.<br><br>
+
+and in this mess…<br>
+you became the person i look for without thinking.<br><br>
+
+i don’t say it enough,<br>
+but i really…<br>
+<span style="color:#ffbde9;">care about you.</span>
+
+<span class="cursor"></span>
+</p>
+
+<div class="continue">
+<a href="page8.html">continue ♡</a>
+</div>
+
+</div>
+
+</body>
+</html>

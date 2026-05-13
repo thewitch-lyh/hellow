@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>everyday</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#070b18;
+    overflow:hidden;
+    height:100vh;
+    color:white;
+    position:relative;
+}
+
+/* background glow */
+
+.bg{
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(circle at top left,#5865F230,transparent 30%),
+    radial-gradient(circle at bottom right,#ff9adf20,transparent 30%);
+}
+
+/* desktop */
+
+.desktop{
+    position:relative;
+    z-index:2;
+    width:100%;
+    height:100vh;
+    padding:40px;
+}
+
+/* title */
+
+.main-text{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    text-align:center;
+
+    z-index:1;
+}
+
+.main-text h1{
+
+    font-size:64px;
+    line-height:1.1;
+
+    background:
+    linear-gradient(
+    135deg,
+    white,
+    #ffbde9);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+    0 0 30px rgba(255,255,255,0.08);
+}
+
+.main-text p{
+
+    margin-top:18px;
+
+    color:#cfd5ff;
+
+    letter-spacing:2px;
+}
+
+/* widgets */
+
+.widget{
+
+    position:absolute;
+
+    border-radius:24px;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(16px);
+
+    padding:18px;
+
+    transition:0.35s ease;
+
+    cursor:pointer;
+}
+
+.widget:hover{
+
+    transform:
+    translateY(-6px)
+    scale(1.02);
+
+    box-shadow:
+    0 0 30px rgba(255,255,255,0.08);
+
+}
+
+/* widget positions */
+
+.note1{
+    top:70px;
+    left:60px;
+    width:220px;
+}
+
+.note2{
+    top:240px;
+    left:100px;
+    width:240px;
+}
+
+.music{
+    top:90px;
+    right:80px;
+    width:300px;
+}
+
+.call{
+    bottom:140px;
+    left:70px;
+    width:260px;
+}
+
+.clock{
+    bottom:100px;
+    right:100px;
+    width:220px;
+    text-align:center;
+}
+
+.folder{
+    bottom:240px;
+    right:300px;
+    width:170px;
+    text-align:center;
+}
+
+/* note style */
+
+.note-title{
+    color:#9da9ff;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:12px;
+}
+
+.note-text{
+    color:#eef1ff;
+    line-height:1.7;
+    font-size:15px;
+}
+
+/* music */
+
+.song{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.album{
+
+    width:60px;
+    height:60px;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #5865F2,
+    #ff9adf);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:24px;
+}
+
+.song-info h3{
+    font-size:16px;
+    margin-bottom:6px;
+}
+
+.song-info p{
+    color:#cfd5ff;
+    font-size:13px;
+}
+
+.bar{
+
+    margin-top:18px;
+
+    width:100%;
+    height:5px;
+
+    border-radius:20px;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    overflow:hidden;
+}
+
+.fill{
+
+    width:62%;
+    height:100%;
+
+    background:
+    linear-gradient(
+    90deg,
+    #5865F2,
+    #ff9adf);
+
+    border-radius:20px;
+}
+
+/* call */
+
+.call h3{
+    margin-bottom:10px;
+}
+
+.call p{
+    color:#cfd5ff;
+    line-height:1.6;
+}
+
+.green{
+    color:#8dffb0;
+}
+
+/* clock */
+
+.time{
+    font-size:42px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.clock p{
+    color:#cfd5ff;
+}
+
+/* folder */
+
+.folder-icon{
+    font-size:54px;
+    margin-bottom:10px;
+}
+
+.folder h3{
+    margin-bottom:8px;
+}
+
+.folder p{
+    color:#bfc7ff;
+    font-size:13px;
+}
+
+/* hover memories */
+
+.memory{
+
+    position:absolute;
+
+    bottom:-60px;
+    left:0;
+
+    background:
+    rgba(0,0,0,0.7);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    padding:10px 14px;
+
+    border-radius:14px;
+
+    font-size:13px;
+
+    opacity:0;
+
+    transition:0.3s;
+
+    pointer-events:none;
+
+    color:#f3f5ff;
+}
+
+.widget:hover .memory{
+    opacity:1;
+}
+
+/* continue */
+
+.continue{
+
+    position:fixed;
+
+    bottom:28px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:220px;
+    height:56px;
+
+    border-radius:18px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-decoration:none;
+
+    color:white;
+    font-weight:600;
+
+    background:
+    linear-gradient(
+    135deg,
+    #5865F2,
+    #8795ff);
+
+    box-shadow:
+    0 0 25px rgba(88,101,242,0.35);
+
+    transition:0.35s;
+
+    z-index:999;
+}
+
+/* stars */
+
+.stars span{
+
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+
+    background:white;
+
+    opacity:0.4;
+
+    animation:twinkle 4s infinite;
+}
+
+@keyframes twinkle{
+
+    0%,100%{
+        opacity:0.2;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+}
+
+/* mobile */
+
+@media(max-width:900px){
+
+.main-text h1{
+    font-size:40px;
+}
+
+.desktop{
+    padding:20px;
+}
+
+.widget{
+    scale:0.92;
+}
+
+.music{
+    right:20px;
+}
+
+.clock{
+    right:20px;
+}
+
+.folder{
+    right:30px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="stars"></div>
+
+<div class="desktop">
+
+    <!-- center text -->
+
+    <div class="main-text">
+
+        <h1>
+            you slowly became<br>
+            part of everything.
+        </h1>
+
+        <p>
+            somewhere between calls, music and midnight.
+        </p>
+
+    </div>
+
+    <!-- sticky note -->
+
+    <div class="widget note1">
+
+        <div class="note-title">
+            REMINDER
+        </div>
+
+        <div class="note-text">
+            ask him about his dayy!!!!
+        </div>
+
+        <div class="memory">
+            “maybe he waits for my texts.”
+        </div>
+
+    </div>
+
+    <!-- second note -->
+
+    <div class="widget note2">
+
+        <div class="note-title">
+            NOTE
+        </div>
+
+        <div class="note-text">
+            REMEMBER SMALL DETAILS        </div>
+
+        <div class="memory">
+            “he says sorry for everything.”
+        </div>
+
+    </div>
+
+    <!-- music widget -->
+
+    <div class="widget music">
+
+        <div class="song">
+
+            <div class="album">
+                ♫
+            </div>
+
+            <div class="song-info">
+
+                <h3>
+                    shared songs
+                </h3>
+
+                <p>
+                    currently playing: his vocals
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="bar">
+            <div class="fill"></div>
+        </div>
+
+        <div class="memory">
+            “Persnol Spotify Premium"
+        </div>
+
+    </div>
+
+    <!-- call widget -->
+
+    <div class="widget call">
+
+        <h3>
+            📞 Missed Call
+        </h3>
+
+        <p>
+            from <span class="green">Mr. Know It All</span><br>
+            3:11 AM
+        </p>
+
+        <div class="memory">
+            “call me when ur free.”
+        </div>
+
+    </div>
+
+    <!-- clock -->
+
+    <div class="widget clock">
+
+        <div class="time">
+            3:02
+        </div>
+
+        <p>
+            still awake.
+        </p>
+
+        <div class="memory">
+            “neither of us slept on time.”
+        </div>
+
+    </div>
+
+    <!-- folder -->
+
+    <div class="widget folder">
+
+        <div class="folder-icon">
+            📁
+        </div>
+
+        <h3>
+            future
+        </h3>
+
+        <p>
+            loading...
+        </p>
+
+        <div class="memory">
+            “maybe this lasts longer than we expected.”
+        </div>
+
+    </div>
+
+</div>
+
+<a href="page7.html" class="continue">
+    continue ♡
+</a>
+
+
+<script>
+
+/* stars */
+
+const stars = document.querySelector('.stars');
+
+for(let i=0;i<80;i++){
+
+    const star = document.createElement('span');
+
+    star.style.top =
+    Math.random()*100 + '%';
+
+    star.style.left =
+    Math.random()*100 + '%';
+
+    star.style.animationDelay =
+    Math.random()*4 + 's';
+
+    stars.appendChild(star);
+}
+
+</script>
+
+</body>
+</html>

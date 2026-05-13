@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>late night call</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#020617;
+    overflow:hidden;
+    height:100vh;
+    color:white;
+    position:relative;
+}
+
+/* background glow */
+
+.glow1,
+.glow2{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:0.22;
+}
+
+.glow1{
+    width:400px;
+    height:400px;
+    background:#5865F2;
+    top:-100px;
+    left:-100px;
+}
+
+.glow2{
+    width:300px;
+    height:300px;
+    background:#ff9adf;
+    bottom:-100px;
+    right:-50px;
+}
+
+/* stars */
+
+.stars span{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    opacity:0.5;
+    animation:twinkle 4s infinite;
+}
+
+@keyframes twinkle{
+
+    0%,100%{
+        opacity:0.2;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+}
+
+/* call screen */
+
+.screen{
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+    z-index:2;
+}
+
+/* title */
+
+.small{
+    color:#bfc7ff;
+    letter-spacing:4px;
+    font-size:12px;
+    margin-bottom:18px;
+}
+
+.duration{
+    font-size:54px;
+    font-weight:700;
+    margin-bottom:18px;
+    text-shadow:0 0 18px rgba(255,255,255,0.08);
+}
+
+.status{
+    color:#8dffb0;
+    font-size:15px;
+    margin-bottom:70px;
+}
+
+/* profiles */
+
+.profiles{
+    display:flex;
+    gap:90px;
+    align-items:center;
+    margin-bottom:90px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.profile{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+.profile:hover{
+    transform:translateY(-6px);
+}
+
+.circle{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:42px;
+    font-weight:700;
+
+    margin-bottom:18px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.july{
+    background:
+    linear-gradient(
+    135deg,
+    #ff9adf,
+    #ffc6e6);
+
+    box-shadow:
+    0 0 35px rgba(255,154,223,0.35);
+}
+
+.mr{
+    background:
+    linear-gradient(
+    135deg,
+    #5865F2,
+    #8795ff);
+
+    box-shadow:
+    0 0 35px rgba(88,101,242,0.35);
+}
+
+.name{
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.hidden-text{
+    opacity:0;
+    transition:0.4s;
+    color:#d7dcff;
+    font-size:14px;
+    text-align:center;
+    max-width:180px;
+}
+
+.profile:hover .hidden-text{
+    opacity:1;
+}
+
+/* floating snippets */
+
+.snippet{
+    position:absolute;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    padding:12px 18px;
+
+    border-radius:18px;
+
+    backdrop-filter:blur(10px);
+
+    color:#eef1ff;
+
+    font-size:14px;
+
+    animation:
+    float 6s ease-in-out infinite;
+}
+
+/* positions */
+
+.s1{
+    top:12%;
+    left:8%;
+}
+
+.s2{
+    top:22%;
+    right:10%;
+}
+
+.s3{
+    bottom:28%;
+    left:10%;
+}
+
+.s4{
+    bottom:18%;
+    right:12%;
+}
+
+.s5{
+    top:50%;
+    left:5%;
+}
+
+.s6{
+    top:60%;
+    right:6%;
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+}
+
+/* visualizer */
+
+.visualizer{
+    position:absolute;
+    bottom:90px;
+
+    display:flex;
+    gap:6px;
+}
+
+.bar{
+    width:6px;
+    background:#8ea0ff;
+    border-radius:20px;
+
+    animation:music 1s infinite ease-in-out;
+}
+
+.bar:nth-child(1){
+    height:20px;
+    animation-delay:0s;
+}
+
+.bar:nth-child(2){
+    height:40px;
+    animation-delay:0.2s;
+}
+
+.bar:nth-child(3){
+    height:26px;
+    animation-delay:0.4s;
+}
+
+.bar:nth-child(4){
+    height:50px;
+    animation-delay:0.6s;
+}
+
+.bar:nth-child(5){
+    height:30px;
+    animation-delay:0.8s;
+}
+
+@keyframes music{
+
+    0%,100%{
+        transform:scaleY(1);
+    }
+
+    50%{
+        transform:scaleY(1.8);
+    }
+
+}
+
+/* ending */
+
+.ending{
+    position:absolute;
+    bottom:160px;
+    text-align:center;
+
+    opacity:0;
+    animation:fadeIn 2s forwards;
+    animation-delay:5s;
+}
+
+.ending p{
+    color:#d9deff;
+    font-size:18px;
+    margin-bottom:12px;
+}
+
+.ending h2{
+    color:#ffb6e7;
+    font-size:32px;
+}
+
+/* continue */
+
+.continue-btn{
+
+    position:absolute;
+    bottom:30px;
+
+    width:220px;
+    height:56px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-decoration:none;
+
+    border-radius:18px;
+
+    color:white;
+    font-weight:600;
+
+    background:
+    linear-gradient(
+    135deg,
+    #5865F2,
+    #8795ff);
+
+    transition:0.35s;
+
+    box-shadow:
+    0 0 25px rgba(88,101,242,0.35);
+}
+
+.continue-btn:hover{
+
+    transform:
+    translateY(-4px)
+    scale(1.03);
+
+}
+
+/* fade */
+
+@keyframes fadeIn{
+
+    to{
+        opacity:1;
+    }
+
+}
+
+/* mobile */
+
+@media(max-width:700px){
+
+.duration{
+    font-size:38px;
+}
+
+.circle{
+    width:110px;
+    height:110px;
+    font-size:34px;
+}
+
+.profiles{
+    gap:40px;
+}
+
+.snippet{
+    font-size:12px;
+    padding:10px 14px;
+}
+
+.ending h2{
+    font-size:24px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow1"></div>
+<div class="glow2"></div>
+
+<div class="stars"></div>
+
+<div class="screen">
+
+    <div class="small">
+        LATE NIGHT VC
+    </div>
+
+    <div class="duration">
+        07:13:22
+    </div>
+
+    <div class="status">
+        connected • camera on 🎥
+    </div>
+
+    <!-- snippets -->
+
+    <div class="snippet s1">
+        “sleep idiot.”
+    </div>
+
+    <div class="snippet s2">
+        “eat properly.”
+    </div>
+
+    <div class="snippet s3">
+        “im here.”
+    </div>
+
+    <div class="snippet s4">
+        “open mic.”
+    </div>
+
+    <div class="snippet s5">
+        “you overthink too much.”
+    </div>
+
+    <div class="snippet s6">
+        “goodnight bacha.”
+    </div>
+
+    <!-- profiles -->
+
+    <div class="profiles">
+
+        <div class="profile">
+
+            <div class="circle july">
+                SK
+            </div>
+
+            <div class="name">
+                Bachaawwwwwww
+            </div>
+
+            <div class="hidden-text">
+               knew he would leave..
+            </div>
+
+        </div>
+
+        <div class="profile">
+
+            <div class="circle mr">
+               PG
+            </div>
+
+            <div class="name">
+                KIDDDOOOOOOO
+            </div>
+
+            <div class="hidden-text">
+he stayed....till end..
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- visualizer -->
+
+    <div class="visualizer">
+
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+
+    </div>
+
+    <!-- ending -->
+
+    <div class="ending">
+
+        <p>
+            distance made you pixels on a screen...
+        </p>
+
+        <h2>
+            but somehow you still became home.
+        </h2>
+
+    </div>
+
+    <!-- continue -->
+
+    <a href="page5.html" class="continue-btn">
+        continue ♡
+    </a>
+
+</div>
+
+<script>
+
+/* stars */
+
+const stars = document.querySelector('.stars');
+
+for(let i=0;i<80;i++){
+
+    const star = document.createElement('span');
+
+    star.style.top =
+    Math.random()*100 + '%';
+
+    star.style.left =
+    Math.random()*100 + '%';
+
+    star.style.animationDelay =
+    Math.random()*4 + 's';
+
+    stars.appendChild(star);
+}
+
+</script>
+
+</body>
+</html>

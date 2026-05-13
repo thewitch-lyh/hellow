@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Mr. Know It All</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background:#00022E;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+/* background */
+
+.bg{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+}
+
+.glow1,
+.glow2{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:0.35;
+}
+
+.glow1{
+    width:350px;
+    height:350px;
+    background:#5865F2;
+    top:-100px;
+    left:-80px;
+    animation:float1 8s ease-in-out infinite;
+}
+
+.glow2{
+    width:300px;
+    height:300px;
+    background:#ff9adf;
+    bottom:-100px;
+    right:-50px;
+    animation:float2 10s ease-in-out infinite;
+}
+
+@keyframes float1{
+    0%,100%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(30px);
+    }
+}
+
+@keyframes float2{
+    0%,100%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-25px);
+    }
+}
+
+/* floating hearts */
+
+.hearts span{
+    position:absolute;
+    color:rgba(255,255,255,0.15);
+    font-size:14px;
+    animation:floatHeart linear infinite;
+}
+
+@keyframes floatHeart{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+/* discord card */
+
+.card{
+    width:90%;
+    max-width:430px;
+    background:rgba(17,20,45,0.78);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:28px;
+    backdrop-filter:blur(18px);
+    padding:35px 28px;
+    position:relative;
+    z-index:5;
+    box-shadow:
+    0 0 30px rgba(88,101,242,0.25),
+    0 0 80px rgba(255,154,223,0.08);
+}
+
+/* discord top */
+
+.top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:26px;
+}
+
+.avatar{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#5865F2,#ff9adf);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-size:20px;
+    font-weight:700;
+}
+
+.user-info h2{
+    color:white;
+    font-size:18px;
+}
+
+.user-info p{
+    color:#aab2ff;
+    font-size:12px;
+}
+
+/* title */
+
+.title{
+    color:white;
+    font-size:34px;
+    line-height:1.2;
+    margin-bottom:14px;
+    font-weight:700;
+}
+
+.title span{
+    color:#ffb3e7;
+}
+
+/* text */
+
+.desc{
+    color:#d6dbff;
+    font-size:14px;
+    line-height:1.8;
+    margin-bottom:28px;
+}
+
+/* input */
+
+.input{
+    width:100%;
+    padding:16px;
+    border:none;
+    outline:none;
+    border-radius:16px;
+    background:rgba(255,255,255,0.07);
+    color:white;
+    font-size:18px;
+    text-align:center;
+    letter-spacing:6px;
+    margin-bottom:18px;
+    transition:0.3s;
+}
+
+.input:focus{
+    box-shadow:0 0 20px rgba(255,179,231,0.25);
+}
+
+/* button */
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:16px;
+    background:linear-gradient(135deg,#5865F2,#7b86ff);
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.35s;
+}
+
+button:hover{
+    transform:translateY(-2px) scale(1.02);
+    box-shadow:0 0 25px rgba(88,101,242,0.4);
+}
+
+/* hint */
+
+.hint{
+    text-align:center;
+    margin-top:18px;
+    color:#ffb3e7;
+    font-size:12px;
+    letter-spacing:5px;
+}
+
+/* error */
+
+#error{
+    text-align:center;
+    margin-top:14px;
+    color:#ff9c9c;
+    display:none;
+    font-size:13px;
+}
+
+/* tiny discord message */
+
+.msg{
+    margin-top:28px;
+    background:rgba(255,255,255,0.04);
+    border-radius:18px;
+    padding:16px;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.msg-user{
+    color:#ffb3e7;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.msg-text{
+    color:#dfe3ff;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* success screen */
+
+.success{
+    position:absolute;
+    inset:0;
+    background:#00022E;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:20;
+    opacity:0;
+    pointer-events:none;
+    transition:1s;
+}
+
+.success.show{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.success h1{
+    color:white;
+    font-size:42px;
+    margin-bottom:14px;
+}
+
+.success p{
+    color:#cfd5ff;
+    font-size:15px;
+}
+
+/* mobile */
+
+@media(max-width:500px){
+
+.title{
+    font-size:28px;
+}
+
+.card{
+    padding:28px 22px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+    <div class="glow1"></div>
+    <div class="glow2"></div>
+
+    <div class="hearts"></div>
+</div>
+
+<div class="card">
+
+    <div class="top">
+
+        <div class="avatar">
+            MK
+        </div>
+
+        <div class="user-info">
+            <h2>Mr. Know It All</h2>
+            <p>online • probably apologising again</p>
+        </div>
+
+    </div>
+
+    <div class="title">
+        one random <span>discord vc</span><br>
+        changed everything.
+    </div>
+
+    <div class="desc">
+        from arguing about random shit one night to becoming the safest part of each other's lives.
+    </div>
+
+    <input
+    type="password"
+    class="input"
+    id="pass"
+    placeholder="ENTER PASSCODE">
+
+    <button onclick="unlock()">
+       ACCESS THE BEST PART OF YOUR LIFE   </button>
+
+    <div class="hint">
+        HINT : THE DAY WE MET
+    </div>
+
+    <div id="error">
+       UNEXPEXTEDDDDD... HOW COULDDD YOUUU!!!
+    </div>
+
+    <div class="msg">
+
+        <div class="msg-user">
+            Ribbion — 2/10/26, 4:47 AM
+        </div>
+
+        <div class="msg-text">
+            “nd i m not mad at youuuuuu<br>
+i lowkey wont gafffffffff”
+        </div>
+
+<div class="msg-user">
+            Mr.Know It All — 2/10/26, 4:47 AM
+        </div>
+
+        <div class="msg-text">
+            “That’s not assuring at all 🥀”
+        </div>
+
+
+
+    </div>
+
+</div>
+
+<div class="success" id="success">
+
+    <h1>Access Granted!!!!</h1>
+
+    <p>
+       YAYYAYAYY BBY U DIDD ITTT!!!!<br>
+        Welcome back to the pastt
+    </p>
+
+</div>
+
+<script>
+
+/* floating hearts */
+
+const hearts = document.querySelector('.hearts');
+
+for(let i=0;i<30;i++){
+
+    const heart = document.createElement('span');
+
+    heart.innerHTML = '♡';
+
+    heart.style.left = Math.random()*100 + 'vw';
+
+    heart.style.animationDuration =
+    (8 + Math.random()*10) + 's';
+
+    heart.style.fontSize =
+    (12 + Math.random()*18) + 'px';
+
+    heart.style.animationDelay =
+    Math.random()*5 + 's';
+
+    hearts.appendChild(heart);
+}
+
+/* passcode */
+
+function unlock(){
+
+    const pass = document.getElementById('pass').value;
+
+    if(pass === "1002"){
+
+        document
+        .getElementById('success')
+        .classList.add('show');
+
+        setTimeout(()=>{
+
+            window.location.href = "page2.html";
+
+        },2500);
+
+    }
+
+    else{
+
+        document
+        .getElementById('error')
+        .style.display = "block";
+    }
+}
+
+</script>
+
+</body>
+</html>

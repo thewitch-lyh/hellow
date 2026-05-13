@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>2:17 AM</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#050816;
+    color:white;
+    overflow:hidden;
+    height:100vh;
+    position:relative;
+}
+
+/* background */
+
+.bg{
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(circle at left,#5d6bff25,transparent 35%),
+    radial-gradient(circle at right,#ff9adf20,transparent 35%);
+}
+
+/* stars */
+
+.stars span{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:white;
+    opacity:0.4;
+    animation:twinkle 4s infinite;
+}
+
+@keyframes twinkle{
+
+    0%,100%{
+        opacity:0.2;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+}
+
+/* split layout */
+
+.wrapper{
+    position:relative;
+    z-index:2;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    height:100vh;
+}
+
+/* sides */
+
+.side{
+
+    padding:70px 40px;
+
+    position:relative;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.left{
+    border-right:1px solid rgba(255,255,255,0.05);
+}
+
+.right{
+    background:rgba(255,255,255,0.015);
+}
+
+/* labels */
+
+.label{
+
+    position:absolute;
+    top:30px;
+
+    font-size:14px;
+    letter-spacing:3px;
+
+    color:#9ca7ff;
+}
+
+.left .label{
+    left:40px;
+}
+
+.right .label{
+    right:40px;
+}
+
+/* messages */
+
+.msg{
+
+    margin:18px 0;
+
+    max-width:340px;
+
+    padding:18px 22px;
+
+    border-radius:24px;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+    backdrop-filter:blur(12px);
+
+    opacity:0;
+
+    transform:translateY(20px);
+
+    animation:appear 0.8s forwards;
+}
+
+/* left messages */
+
+.left .msg{
+
+    background:
+    rgba(88,101,242,0.12);
+
+    border:
+    1px solid rgba(88,101,242,0.18);
+
+    color:#eef1ff;
+}
+
+/* right messages */
+
+.right .msg{
+
+    margin-left:auto;
+
+    background:
+    rgba(255,154,223,0.08);
+
+    border:
+    1px solid rgba(255,154,223,0.14);
+
+    color:#fff2fb;
+}
+
+/* delays */
+
+.m1{ animation-delay:0.5s; }
+.m2{ animation-delay:1.2s; }
+.m3{ animation-delay:2s; }
+.m4{ animation-delay:2.8s; }
+.m5{ animation-delay:3.6s; }
+.m6{ animation-delay:4.4s; }
+.m7{ animation-delay:5.2s; }
+.m8{ animation-delay:6s; }
+
+/* center clock */
+
+.centerpiece{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    z-index:5;
+
+    text-align:center;
+}
+
+.time{
+
+    font-size:90px;
+    font-weight:700;
+
+    letter-spacing:4px;
+
+    background:
+    linear-gradient(
+    135deg,
+    white,
+    #b8c2ff);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+    0 0 35px rgba(255,255,255,0.06);
+}
+
+.sub{
+
+    margin-top:12px;
+
+    color:#c7ceff;
+
+    font-size:15px;
+
+    letter-spacing:2px;
+}
+
+/* typing */
+
+.typing{
+
+    position:absolute;
+
+    bottom:80px;
+    right:80px;
+
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    opacity:0;
+
+    animation:fadeIn 1s forwards;
+    animation-delay:6.8s;
+}
+
+.typing span{
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#ffb6e7;
+
+    animation:bounce 1s infinite;
+}
+
+.typing span:nth-child(2){
+    animation-delay:0.2s;
+}
+
+.typing span:nth-child(3){
+    animation-delay:0.4s;
+}
+
+.typing-text{
+    margin-left:10px;
+    color:#ffcaeb;
+    font-size:13px;
+}
+
+/* online */
+
+.online{
+
+    position:absolute;
+
+    bottom:40px;
+    right:80px;
+
+    color:#8dffb0;
+
+    font-size:14px;
+
+    opacity:0;
+
+    animation:fadeIn 1s forwards;
+    animation-delay:9s;
+}
+
+/* continue */
+
+.continue{
+
+    position:absolute;
+
+    bottom:30px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:220px;
+    height:56px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    color:white;
+    font-weight:600;
+
+    background:
+    linear-gradient(
+    135deg,
+    #5865F2,
+    #8795ff);
+
+    box-shadow:
+    0 0 25px rgba(88,101,242,0.3);
+
+    z-index:10;
+
+    transition:0.35s;
+}
+
+.continue:hover{
+
+    transform:
+    translateX(-50%)
+    translateY(-4px);
+
+}
+
+/* animations */
+
+@keyframes appear{
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes bounce{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+
+}
+
+@keyframes fadeIn{
+
+    to{
+        opacity:1;
+    }
+
+}
+
+/* mobile */
+
+@media(max-width:900px){
+
+.wrapper{
+    grid-template-columns:1fr;
+}
+
+.left{
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.time{
+    font-size:56px;
+}
+
+.side{
+    padding:80px 20px;
+}
+
+.typing,
+.online{
+    right:20px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="stars"></div>
+
+<div class="centerpiece">
+
+    <div class="time">
+        2:24 AM
+    </div>
+
+    <div class="sub">
+        neither of us really wanted to sleep.
+    </div>
+
+</div>
+
+<div class="wrapper">
+
+    <!-- YOUR SIDE -->
+
+    <div class="side left">
+
+        <div class="label">
+            JULY
+        </div>
+
+        <div class="msg m1">
+            i m good
+        </div>
+
+        <div class="msg m3">
+            u cn sleep<br>
+            its late
+        </div>
+
+        <div class="msg m5">
+            i m not sad
+        </div>
+
+        <div class="msg m7">
+            hm<br>
+            go<br>
+            night
+        </div>
+
+    </div>
+
+    <!-- HIS SIDE -->
+
+    <div class="side right">
+
+        <div class="label">
+            MR. KNOW IT ALL
+        </div>
+
+        <div class="msg m2">
+            Denial.<br><br>
+
+            Unmute yourself and scold the fuck out of me.<br><br>
+
+            I don’t want to sleep while you’re angry and sad.
+        </div>
+
+        <div class="msg m4">
+            I won’t darling.
+        </div>
+
+        <div class="msg m6">
+            Tum dukhi ho toh mai kaise so jau.
+        </div>
+
+        <div class="msg m8">
+            Tell me.<br><br>
+
+            You want me to go to sleep?
+        </div>
+
+    </div>
+
+</div>
+
+<!-- typing -->
+
+<div class="typing">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+    <div class="typing-text">
+        Mr. Know It All is typing...
+    </div>
+
+</div>
+
+<!-- online -->
+
+<div class="online">
+    ● online
+</div>
+
+<a href="page6.html" class="continue">
+    continue ♡
+</a>
+
+<script>
+
+/* stars */
+
+const stars = document.querySelector('.stars');
+
+for(let i=0;i<70;i++){
+
+    const star = document.createElement('span');
+
+    star.style.top =
+    Math.random()*100 + '%';
+
+    star.style.left =
+    Math.random()*100 + '%';
+
+    star.style.animationDelay =
+    Math.random()*4 + 's';
+
+    stars.appendChild(star);
+}
+
+</script>
+
+</body>
+</html>

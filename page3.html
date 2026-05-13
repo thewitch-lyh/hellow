@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Idiot Phase</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#00022E;
+    overflow-x:hidden;
+    color:white;
+    min-height:100vh;
+    position:relative;
+}
+
+/* background */
+
+.glow1,
+.glow2{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(120px);
+    z-index:-1;
+    opacity:0.25;
+}
+
+.glow1{
+    width:400px;
+    height:400px;
+    background:#5865F2;
+    top:-120px;
+    left:-80px;
+}
+
+.glow2{
+    width:320px;
+    height:320px;
+    background:#ff9adf;
+    bottom:-100px;
+    right:-50px;
+}
+
+/* floating words */
+
+.words span{
+    position:fixed;
+    color:rgba(255,255,255,0.08);
+    font-size:22px;
+    font-weight:600;
+    animation:floatWord linear infinite;
+    z-index:-1;
+}
+
+@keyframes floatWord{
+
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+
+}
+
+/* container */
+
+.container{
+    width:92%;
+    max-width:850px;
+    margin:auto;
+    padding:70px 0;
+}
+
+/* heading */
+
+.heading{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.heading h1{
+    font-size:54px;
+    margin-bottom:14px;
+}
+
+.heading p{
+    color:#cfd5ff;
+    font-size:15px;
+}
+
+/* chat */
+
+.chat-box{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+/* messages */
+
+.msg{
+    display:flex;
+    gap:14px;
+    padding:18px;
+    border-radius:24px;
+
+    background:rgba(255,255,255,0.04);
+
+    border:1px solid rgba(255,255,255,0.07);
+
+    backdrop-filter:blur(12px);
+
+    opacity:0;
+    transform:translateY(30px);
+
+    animation:appear 0.7s forwards;
+}
+
+/* delays */
+
+.msg:nth-child(1){ animation-delay:0.3s; }
+.msg:nth-child(2){ animation-delay:0.8s; }
+.msg:nth-child(3){ animation-delay:1.3s; }
+.msg:nth-child(4){ animation-delay:1.8s; }
+.msg:nth-child(5){ animation-delay:2.3s; }
+.msg:nth-child(6){ animation-delay:2.8s; }
+.msg:nth-child(7){ animation-delay:3.3s; }
+.msg:nth-child(8){ animation-delay:3.8s; }
+.msg:nth-child(9){ animation-delay:4.3s; }
+.msg:nth-child(10){ animation-delay:4.8s; }
+.msg:nth-child(11){ animation-delay:5.3s; }
+.msg:nth-child(12){ animation-delay:5.8s; }
+
+/* avatars */
+
+.avatar{
+    min-width:50px;
+    height:50px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-weight:700;
+}
+
+.july{
+    background:linear-gradient(135deg,#ff9adf,#ffc6e6);
+}
+
+.mr{
+    background:linear-gradient(135deg,#5865F2,#8795ff);
+}
+
+/* content */
+
+.content{
+    width:100%;
+}
+
+.user{
+    font-size:14px;
+    margin-bottom:7px;
+}
+
+.user span{
+    color:#97a0e4;
+    font-size:12px;
+    margin-left:6px;
+}
+
+.text{
+    color:#eef1ff;
+    line-height:1.7;
+    font-size:15px;
+}
+
+/* big text */
+
+.center-text{
+    text-align:center;
+    margin:110px 0 90px;
+
+    opacity:0;
+    transform:translateY(20px);
+
+    animation:fadeUp 1s forwards;
+    animation-delay:6.8s;
+}
+
+.center-text h2{
+    font-size:40px;
+    margin-bottom:14px;
+}
+
+.center-text p{
+    color:#ffb6e7;
+    font-size:20px;
+}
+
+/* continue button */
+
+.continue-btn{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:240px;
+    height:60px;
+
+    margin:30px auto 50px;
+
+    border-radius:20px;
+
+    text-decoration:none;
+
+    color:white;
+    font-size:16px;
+    font-weight:600;
+
+    background:
+    linear-gradient(
+    135deg,
+    #5865F2,
+    #8d9aff);
+
+    box-shadow:
+    0 0 25px rgba(88,101,242,0.35);
+
+    transition:0.35s;
+}
+
+.continue-btn:hover{
+
+    transform:
+    translateY(-4px)
+    scale(1.03);
+
+    box-shadow:
+    0 0 35px rgba(88,101,242,0.5);
+}
+
+/* animations */
+
+@keyframes appear{
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes fadeUp{
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* mobile */
+
+@media(max-width:600px){
+
+.heading h1{
+    font-size:38px;
+}
+
+.center-text h2{
+    font-size:28px;
+}
+
+.center-text p{
+    font-size:18px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow1"></div>
+<div class="glow2"></div>
+
+<div class="words"></div>
+
+<div class="container">
+
+    <div class="heading">
+
+        <h1>The Idiot Phase</h1>
+
+        <p>
+            we started arguing for fun.
+        </p>
+
+    </div>
+
+    <div class="chat-box">
+
+        <div class="msg">
+            <div class="avatar july">J</div>
+
+            <div class="content">
+                <div class="user">
+                    July
+                    <span>2/10/26, 7:57 PM</span>
+                </div>
+
+                <div class="text">
+                    thats like disrespecting
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar mr">MK</div>
+
+            <div class="content">
+                <div class="user">
+                    Mr. Know It All
+                    <span>2/10/26, 7:57 PM</span>
+                </div>
+
+                <div class="text">
+                    Achawww?
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar july">J</div>
+
+            <div class="content">
+                <div class="user">
+                    July
+                    <span>2/10/26, 7:58 PM</span>
+                </div>
+
+                <div class="text">
+                    udkkk cause ur a kiddddd
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar mr">MK</div>
+
+            <div class="content">
+                <div class="user">
+                    Mr. Know It All
+                    <span>2/10/26, 7:59 PM</span>
+                </div>
+
+                <div class="text">
+                    I WAS BORN WITH IT
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar july">J</div>
+
+            <div class="content">
+                <div class="user">
+                    July
+                    <span>2/10/26, 7:59 PM</span>
+                </div>
+
+                <div class="text">
+                    R U A LITTLE DUMB?
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar mr">MK</div>
+
+            <div class="content">
+                <div class="user">
+                    Mr. Know It All
+                    <span>2/10/26, 8:00 PM</span>
+                </div>
+
+                <div class="text">
+                    Sure bacha keep crying
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar july">J</div>
+
+            <div class="content">
+                <div class="user">
+                    July
+                    <span>2/10/26, 8:00 PM</span>
+                </div>
+
+                <div class="text">
+                    neh i dont cryyyyyy
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar mr">MK</div>
+
+            <div class="content">
+                <div class="user">
+                    Mr. Know It All
+                    <span>2/10/26, 8:01 PM</span>
+                </div>
+
+                <div class="text">
+                    Imma still say bacha bacha
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar july">J</div>
+
+            <div class="content">
+                <div class="user">
+                    July
+                    <span>2/10/26, 8:02 PM</span>
+                </div>
+
+                <div class="text">
+                    use ur brain a little bittt okaa?
+                </div>
+            </div>
+        </div>
+
+        <div class="msg">
+            <div class="avatar mr">MK</div>
+
+            <div class="content">
+                <div class="user">
+                    Mr. Know It All
+                    <span>2/10/26, 8:02 PM</span>
+                </div>
+
+                <div class="text">
+                    No bacha I won’t.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="center-text">
+
+        <h2>
+            somewhere between “kiddo” and “Bachawwwwwww”...
+        </h2>
+
+        <p>
+            you became my favourite notification. 💙
+        </p>
+
+    </div>
+
+    <a href="page4.html" class="continue-btn">
+        continue ♡
+    </a>
+
+</div>
+
+<script>
+
+/* floating words */
+
+const words = [
+    "bacha",
+    "kiddo",
+    "womp womp",
+    "crying",
+    "dummy",
+    "achawww",
+    "😭",
+    "♡"
+];
+
+const container = document.querySelector('.words');
+
+for(let i=0;i<28;i++){
+
+    const span = document.createElement('span');
+
+    span.innerHTML =
+    words[Math.floor(Math.random()*words.length)];
+
+    span.style.left =
+    Math.random()*100 + 'vw';
+
+    span.style.animationDuration =
+    (8 + Math.random()*10) + 's';
+
+    span.style.fontSize =
+    (14 + Math.random()*16) + 'px';
+
+    span.style.animationDelay =
+    Math.random()*6 + 's';
+
+    container.appendChild(span);
+}
+
+</script>
+
+</body>
+</html>
